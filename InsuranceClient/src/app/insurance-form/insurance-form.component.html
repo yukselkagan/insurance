@@ -1,0 +1,92 @@
+<div class="container mt-5" >
+
+
+  <ul class="nav nav-tabs justify-content-center" >
+    <li class="nav-item"  *ngFor="let agreementPart of agreementParts" >
+      <button (click)="changeAgreementPart(agreementPart.partCode)" class="nav-link" [ngClass]="{'active': activeTab == agreementPart.partCode}" type="button">
+        {{agreementPart.partString}}
+      </button>
+    </li>
+  </ul>
+
+
+  <div class="tab-content" >
+    <div class="tab-pane fade" *ngFor="let agreementPart of agreementParts; let i = index" [ngClass]="{'show active':activeTab == agreementPart.partCode}" >
+      <app-policy-select [pageChange]="partChangeControl_1" (selectedPolicyChange)="receiveSelectedPolicy($event)"  (inheritedChangeAgreementPart)="changeAgreementPart(agreementParts[i+1].partCode)" *ngIf="agreementPart.partCode == 'policy-select'" ></app-policy-select>
+      <app-person-info (personInfoChange)="receivePersonInfo($event)" *ngIf="agreementPart.partCode == 'person-info'"  (inheritedChangeAgreementPart)="changeAgreementPart(agreementParts[i+1].partCode)" ></app-person-info>
+      <app-price-info (installmentChange)="receiveInstallmentInfo($event)" [totalPrice]="inputTotalPrice" (inheritedChangeAgreementPart)="changeAgreementPart(agreementParts[i+1].partCode)" [customerLastName]="inputLastName" [customerFirstName]="inputFirstName" *ngIf="agreementPart.partCode == 'price-info'" ></app-price-info>
+
+      <div class="mt-5" *ngIf="agreementPart.partCode == 'confirm'" >
+
+        <div class="row mb-0 text-capitalize">
+          <div class="col-4 themed-grid-col">İsim: {{inputFirstName}}</div>
+          <div class="col-4 themed-grid-col">Soyisim: {{inputLastName}}</div>
+          <div class="col-4 themed-grid-col">TC Kimlik Numarası: {{inputIdentityNumber}}</div>
+        </div>
+        <div class="row mb-0 text-capitalize">
+          <div class="col-4 themed-grid-col">Seçilen Poliçe: {{policyList[selectedPolicyId].policyName}}</div>
+          <div class="col-4 themed-grid-col">Fiyat: {{inputTotalPrice}}</div>
+          <div class="col-4 themed-grid-col">Taksit: {{inputInstallment}}</div>
+
+        </div>
+        <div class="row mb-0 text-capitalize">
+          <div class="col-4 themed-grid-col">Cinsiyet: {{inputGender}}</div>
+          <div class="col-4 themed-grid-col">Doğum Tarihi: {{inputBirthday}}</div>
+          <div class="col-4 themed-grid-col">Telefon: {{inputPhoneNumber}}</div>
+        </div>
+        <div class="row mb-0 text-capitalize">
+          <div class="col-4 themed-grid-col">Ülke: {{inputCountry}}</div>
+          <div class="col-4 themed-grid-col">İl: {{inputProvince}}</div>
+          <div class="col-4 themed-grid-col">İlçe: {{inputDistrict}}</div>
+        </div>
+        <div class="row mb-0">
+          <div class="col themed-grid-col">Email: {{inputEmail}}</div>
+        </div>
+        <div class="row mb-0">
+          <div class="col themed-grid-col">Adres: {{inputAddress}}</div>
+        </div>
+
+
+        <button (click)="postAgreement()" type="button" class="btn btn-primary float-end mt-3">Onayla</button>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div id="insuranceToast" class="toast align-items-center text-white bg-primary toast-bottom-right mb-3 me-3 " role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body" id="insuranceToastText" >
+      Error
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

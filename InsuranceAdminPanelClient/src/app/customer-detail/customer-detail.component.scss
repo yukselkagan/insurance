@@ -1,0 +1,36 @@
+
+.detail-window{
+  display: none;
+
+  border-radius: 1rem;
+  background-color: rgb(238, 238, 238);
+  background-clip: padding-box;
+  border: 2px solid rgba(0,0,0,.2);
+
+  //background-color: green;
+  width: 40%;
+  height: 40%;
+  position: fixed;
+  left:30%;
+  top:30%;
+
+  padding: 10px;
+  //font-size: 12px;
+
+  overflow: auto;
+}
+
+
+.themed-grid-col {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color: rgba(163, 179, 230, 0.15);
+  border: 1px solid rgba(86, 61, 124, .2);
+}
+
+.themed-container {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  background-color: rgba(0, 123, 255, .15);
+  border: 1px solid rgba(0, 123, 255, .2);
+}

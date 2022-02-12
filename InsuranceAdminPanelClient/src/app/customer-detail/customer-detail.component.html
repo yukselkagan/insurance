@@ -1,0 +1,51 @@
+<div id="detail-window" class="detail-window"  >
+  <strong>Sigortalı Detayları</strong>
+
+
+
+  <div class="mt-1 container"  >
+
+    <div class="row mb-0 text-capitalize">
+      <div class="col-4 themed-grid-col">İsim: {{selectedAgreement.person.firstName}}</div>
+      <div class="col-4 themed-grid-col">Soyisim: {{selectedAgreement.person.lastName}}</div>
+      <div class="col-4 themed-grid-col">TC Kimlik Numarası: {{selectedAgreement.person.identityNumber}}</div>
+    </div>
+    <div class="row mb-0 text-capitalize">
+      <div class="col-4 themed-grid-col">Seçilen Poliçe: {{policyList[selectedAgreement.policyId].policyName}}</div>
+      <div class="col-4 themed-grid-col">Fiyat: {{selectedAgreement.totalPrice}}</div>
+      <div class="col-4 themed-grid-col">Taksit: {{selectedAgreement.installment}}</div>
+
+    </div>
+    <div class="row mb-0 text-capitalize">
+      <div class="col-4 themed-grid-col">Cinsiyet: {{selectedAgreement.person.gender}}</div>
+      <div class="col-4 themed-grid-col">Doğum Tarihi: {{commonService.formatDate(selectedAgreement.person.birthday)}}</div>
+      <div class="col-4 themed-grid-col">Telefon: {{selectedAgreement.person.phoneNumber}}</div>
+    </div>
+    <div class="row mb-0 text-capitalize">
+      <div class="col-4 themed-grid-col">Ülke: {{selectedAgreement.person.country}}</div>
+      <div class="col-4 themed-grid-col">İl: {{selectedAgreement.person.province}}</div>
+      <div class="col-4 themed-grid-col">İlçe: {{selectedAgreement.person.district}}</div>
+    </div>
+    <div class="row mb-0">
+      <div class="col themed-grid-col">Email: {{selectedAgreement.person.email}}</div>
+    </div>
+    <div class="row mb-0">
+      <div class="col themed-grid-col">Adres: {{selectedAgreement.person.address}}</div>
+    </div>
+
+    <div  class="d-grid gap-2 col-4 mx-auto" >
+    <button (click)="closeDetailWindow()"  type="button" class="btn btn-primary mt-3">Kapat</button>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+</div>

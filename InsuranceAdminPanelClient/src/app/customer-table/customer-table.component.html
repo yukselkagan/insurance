@@ -1,0 +1,45 @@
+
+
+
+<div class="container">
+  <table class="table table-light table-bordered mt-5">
+    <thead class="table-light">
+      <tr class="bg-dark" >
+        <th scope="col">Sigortalı ismi</th>
+        <th scope="col">Seçilen Paket</th>
+        <th scope="col">Toplam Prim</th>
+        <th scope="col">Seçilen Taksit</th>
+        <th scope="col">Başlangıç Tarihi</th>
+        <th scope="col">Bitiş Tarihi</th>
+        <th scope="col">Detay</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agreement of agreements; let itemIndex = index" >
+        <td class="text-capitalize" >{{agreement.person.firstName}} {{agreement.person.lastName}}</td>
+        <td>{{policyList[agreement.policyId].policyName}}</td>
+        <td>{{agreement.totalPrice}}</td>
+        <td>{{agreement.installment}}</td>
+        <td>{{formatDate(agreement.startDate)}}</td>
+        <td>{{formatDate(agreement.endDate)}}</td>
+        <td class="text-center" >
+          <button (click)="openDetailWindow(itemIndex)" type="button" class="btn btn-primary btn-sm">Detail</button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div id="insuranceToast" class="toast align-items-center text-white bg-primary toast-bottom-right mb-3 me-3 " role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="d-flex">
+    <div class="toast-body" id="insuranceToastText" >
+    Error
+    </div>
+    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+</div>
+
+
+
+

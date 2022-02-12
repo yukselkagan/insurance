@@ -1,0 +1,264 @@
+<div class="mt-5">
+  <form [formGroup]="personInfoObject" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="identityNumberInput" class="form-label">TC Kimlik No</label>
+      <input
+        type="text"
+        class="form-control"
+        id="identityNumberInput"
+        aria-describedby="identityNumberHelp"
+        maxlength="11"
+        formControlName="identityNumber"
+        (ngModelChange)="personInfoChange.emit(personInfoObject)"
+        name="identityNumber"
+      />
+      <div id="identityNumberHelp" class="form-text">
+        11 Haneli TC Kimlik Numarası
+      </div>
+      <div
+        *ngIf="
+          personInfoObject.controls['identityNumber'].invalid &&
+          (personInfoObject.controls['identityNumber'].dirty ||
+            personInfoObject.controls['identityNumber'].touched)
+        "
+        class="form-text text-danger"
+      >
+        <div
+          *ngIf="personInfoObject.controls['identityNumber'].errors?.['required']"
+        >
+          TC Kimlik numarasının girilmesi gerekiyor
+        </div>
+        <div
+          *ngIf="personInfoObject.controls['identityNumber'].errors?.['pattern']"
+        >
+          Sayılardan oluşması gerekiyor
+        </div>
+        <div
+          *ngIf="personInfoObject.controls['identityNumber'].errors?.['minlength']"
+        >
+          11 haneli olması gerekiyor
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mb-3 col-sm-6">
+        <label for="firstNameInput" class="form-label">İsim</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstNameInput"
+          aria-describedby="identityNumberHelp"
+          formControlName="firstName"
+          (ngModelChange)="personInfoChange.emit(personInfoObject)"
+          maxlength="50"
+          name="firstName"
+        />
+        <div
+          *ngIf="
+            personInfoObject.controls['firstName'].invalid &&
+            (personInfoObject.controls['firstName'].dirty ||
+              personInfoObject.controls['firstName'].touched)
+          "
+          class="form-text text-danger"
+        >
+          <div
+            *ngIf="personInfoObject.controls['firstName'].errors?.['required']"
+          >
+            İsim girilmesi gerekiyor
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 col-sm-6">
+        <label for="lastNameInput" class="form-label">Soyisim</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastNameInput"
+          aria-describedby="identityNumberHelp"
+          formControlName="lastName"
+          (ngModelChange)="personInfoChange.emit(personInfoObject)"
+          maxlength="50"
+          name="lastName"
+        />
+        <div
+          *ngIf="
+            personInfoObject.controls['lastName'].invalid &&
+            (personInfoObject.controls['lastName'].dirty ||
+              personInfoObject.controls['lastName'].touched)
+          "
+          class="form-text text-danger"
+        >
+          <div
+            *ngIf="personInfoObject.controls['lastName'].errors?.['required']"
+          >
+            Soyisim girilmesi gerekiyor
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm mb-3">
+        <label for="phoneNumberInput" class="form-label">Telefon</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phoneNumberInput"
+          aria-describedby="phoneNumberHelp"
+          formControlName="phoneNumber"
+          (ngModelChange)="personInfoChange.emit(personInfoObject)"
+          maxlength="50"
+          name="phoneNumber"
+        />
+        <div
+          *ngIf="
+          personInfoObject.controls['phoneNumber'].invalid &&
+          (personInfoObject.controls['phoneNumber'].dirty ||
+            personInfoObject.controls['phoneNumber'].touched)
+          "
+          class="form-text text-danger"
+        >
+          <div
+            *ngIf="personInfoObject.controls['phoneNumber'].errors?.['required']"
+          >
+            Telefon girilmesi gerekiyor
+          </div>
+        </div>
+      </div>
+      <div class="col-sm mb-3">
+        <label for="identityNumberInput" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="identityNumberInput"
+          aria-describedby="identityNumberHelp"
+          formControlName="email"
+          (ngModelChange)="personInfoChange.emit(personInfoObject)"
+          maxlength="100"
+          name="email"
+        />
+        <div
+          *ngIf="
+            personInfoObject.controls['email'].invalid &&
+            (personInfoObject.controls['email'].dirty ||
+              personInfoObject.controls['email'].touched)
+          "
+          class="form-text text-danger"
+        >
+          <div
+            *ngIf="personInfoObject.controls['email'].errors?.['required']"
+          >
+            Email girilmesi gerekiyor
+          </div>
+          <div
+            *ngIf="personInfoObject.controls['email'].errors?.['email']"
+          >
+            Geçerli bir email girilmesi gerekiyor
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-3">
+        <label for="genderInput" class="form-label">Cinsiyet</label>
+        <select class="form-select" id="genderInput" aria-label="genderInputLabel" formControlName="gender" (ngModelChange)="personInfoChange.emit(personInfoObject)">
+          <option value="female">Kadın</option>
+          <option value="male">Erkek</option>
+        </select>
+      </div>
+
+      <div class="col-sm-3">
+        <label for="birthday" class="form-label">Doğum Tarihi:</label>
+        <input class="form-control" type="date" id="birthday" name="birthday" formControlName="birthday" (ngModelChange)="personInfoChange.emit(personInfoObject)" />
+        <div
+          *ngIf="
+            personInfoObject.controls['birthday'].invalid &&
+            (personInfoObject.controls['birthday'].dirty ||
+              personInfoObject.controls['birthday'].touched)
+          "
+          class="form-text text-danger"
+        >
+          <div
+            *ngIf="personInfoObject.controls['birthday'].errors?.['required']"
+          >
+            Doğum tarihi girilmesi gerekiyor
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="identityNumberInput" class="form-label">Ülke</label>
+        <select class="form-select" aria-label="" formControlName="country" (ngModelChange)="changeCountry()"  >
+          <option [value]="country.countryName" *ngFor="let country of countryList" value="1">
+            {{country.countryName}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="identityNumberInput" class="form-label">İl</label>
+        <select class="form-select" aria-label="" formControlName="province" (ngModelChange)="changeProvince()">
+          <option *ngFor="let province of provinceList" [value]="province">
+            {{province}}
+          </option>
+          <option *ngIf="provinceList.length == 0" >Ülke seçmeniz gerekiyor</option>
+        </select>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="identityNumberInput" class="form-label">İlçe</label>
+        <select class="form-select" aria-label="" formControlName="district" (ngModelChange)="personInfoChange.emit(personInfoObject)" >
+          <option *ngFor="let district of districtList" [value]="district"  >
+            {{district}}
+          </option>
+          <option *ngIf="districtList.length == 0" >İl seçmeniz gerekiyor</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="identityNumberInput" class="form-label">Adres</label>
+      <div class="input-group">
+        <textarea
+          class="form-control"
+          aria-label="With textarea"
+          rows="3"
+          style="resize: none"
+          formControlName="address"
+          (ngModelChange)="personInfoChange.emit(personInfoObject)"
+          maxlength="500"
+          name="address"
+        ></textarea>
+      </div>
+      <div
+          *ngIf="
+            personInfoObject.controls['address'].invalid &&
+            (personInfoObject.controls['address'].dirty ||
+              personInfoObject.controls['address'].touched)
+          "
+          class="form-text text-danger"
+        >
+          <div
+            *ngIf="personInfoObject.controls['address'].errors?.['required']"
+          >
+            Adres girilmesi gerekiyor
+          </div>
+        </div>
+    </div>
+
+    <button (click)="callInheritedChangeAgreementPart()" type="button" class="btn btn-success float-end">İleri</button>
+
+  </form>
+</div>
+
+
+
+
+<br /><br /><br />
+
+
